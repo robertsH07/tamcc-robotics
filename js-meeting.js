@@ -22,4 +22,9 @@ function createMeeting() {
     console.log("Meeting ID:", meetingID);
     console.log("Meeting Date:", date);
     console.log("Attendance URL:", attendanceURL);
+    
+    const parameters = new URLSearchParams(window.location.search);
+const meetingID = parameters.get("meeting");
+
+document.getElementById("meetingID").textContent = meetingID;
 }
