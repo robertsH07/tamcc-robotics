@@ -12,10 +12,40 @@ if (meetingDate) {
         year: "numeric"
     });
 
-    document.getElementById("meetingID").textContent = "Meeting: " + formattedDate;
+    document.getElementById("meetingID").textContent =
+        "Meeting: " + formattedDate;
 } else {
-    document.getElementById("meetingID").textContent = "Meeting: No date";
+    document.getElementById("meetingID").textContent =
+        "Meeting: No date";
 }
 
-console.log("Meeting ID:", meetingID);
-console.log("Meeting Date:", meetingDate);
+function submitAttendance() {
+    const name = document.getElementById("name").value.trim();
+
+    if (name === "") {
+        alert("Please enter your name.");
+        return;
+    }
+
+    const data = {
+        name: name,
+        date: meetingDate,
+        meetingID: meetingID,
+        time: new Date().toLocaleString()
+    };
+
+    fetch("https://script.google.com/macros/s/AKfycbxzSx5Ky2fuwyHHKxcfA7dJx-5yeGC0wP4VAJh_4RpOjE9vIWsCN3heHk7oPGQXAUd3qw/exec", {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            window.location.href = "attendance-confirmation.html";
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("There was a problem submitting your attendance.");
+    });
+}
