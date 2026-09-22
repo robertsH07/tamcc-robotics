@@ -40,5 +40,5 @@ function submitAttendance() {
         body: JSON.stringify(data)
     });
 
-    window.location.href = "attendance-confirmation.html";
+    window.location.href = "attendance-confirmation.html"+ encodeURIComponent(name);
 }
