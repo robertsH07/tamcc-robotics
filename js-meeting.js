@@ -11,7 +11,7 @@ function createMeeting() {
     localStorage.setItem("meetingDate", date);
     localStorage.setItem("meetingID", meetingID);
 
-    const attendanceURL = "https://robertsh07.github.io/TAMCC-Robotics/attendance-page.html?meeting=" + meetingID;
+    const attendanceURL = "https://robertsh07.github.io/tamcc-robotics/attendance-page.html?meeting=" + meetingID;
 
     const qrContainer = document.getElementById("qrcode");
 
