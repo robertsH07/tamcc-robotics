@@ -1,6 +1,4 @@
-
 function createMeeting() {
-
     const date = document.getElementById("meetingDate").value;
 
     if (date === "") {
@@ -8,30 +6,49 @@ function createMeeting() {
         return;
     }
 
-    localStorage.setItem("meetingDate", date);
-
     const meetingID = Date.now();
 
+    localStorage.setItem("meetingDate", date);
+    localStorage.setItem("meetingID", meetingID);
+
     const attendanceURL =
-        window.location.origin +
-        "/attendance-page.html?meeting=" +
+        "https://robertsh07.github.io/TAMCC-Robotics/attendance-page.html?meeting=" +
         meetingID;
 
     const qrContainer = document.getElementById("qrcode");
 
     qrContainer.innerHTML = "";
 
-    const qrURL = `https://robertsH07.github.io/tamcc-Robotics/attendance-page.html?meeting=${meetingId}`;
-
     new QRCode(qrContainer, attendanceURL);
 
     console.log("Meeting ID:", meetingID);
     console.log("Meeting Date:", date);
     console.log("Attendance URL:", attendanceURL);
+}
 
-    const parameters = new URLSearchParams(window.location.search);
+function createAttendanceQR() {
+    const meetingID = localStorage.getItem("meetingID");
 
+    if (!meetingID) {
+        alert("No meeting has been created.");
+        return;
+    }
+
+    const attendanceURL =
+        "https://robertsh07.github.io/TAMCC-Robotics/attendance-page.html?meeting=" +
+        meetingID;
+
+    const qrContainer = document.getElementById("qrcode");
+
+    qrContainer.innerHTML = "";
+
+    new QRCode(qrContainer, attendanceURL);
+
+    console.log("Meeting ID:", meetingID);
+    console.log("Attendance URL:", attendanceURL);
+}
+
+const parameters = new URLSearchParams(window.location.search);
 const urlMeetingID = parameters.get("meeting");
 
 console.log("Meeting ID:", urlMeetingID);
-}
