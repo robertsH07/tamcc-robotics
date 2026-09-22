@@ -9,7 +9,7 @@ function createMeeting() {
    const meetingID = Date.now();
 
     const attendanceURL =
-        "https://robertsh07.github.io/TAMCC-Robotics/attendance-page.html?meeting=" +
+        "https://robertsh07.github.io/tamcc-robotics/attendance-page.html?meeting=" +
         meetingID +
         "&date=" +
         date;
