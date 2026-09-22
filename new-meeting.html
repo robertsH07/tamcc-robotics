@@ -1,0 +1,23 @@
+<html> 
+<head>
+    <title>New Meeting</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+ <body>  
+    <h1>New Meeting</h1>
+ <label for="meetingDate">Select Meeting Date:</label>
+
+<input type="date" id="meetingDate">
+
+<button onclick="createMeeting()">
+    Create Meeting
+</button>
+
+<h2>Attendance QR Code</h2>
+
+    <div id="qrcode"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="js-meeting.js"></script>
+</body>
+</html>
