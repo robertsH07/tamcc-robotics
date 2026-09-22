@@ -17,7 +17,10 @@
 
     <div id="qrcode"></div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="js-meeting.js"></script>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
      <script>
 const parameters = new URLSearchParams(window.location.search);
 
@@ -25,6 +28,4 @@ const meetingDate = parameters.get("date");
 
 document.getElementById("meetingDate").textContent = meetingDate || "No date";
 </script>
-<script src="js-meeting.js"></script>
-</body>
 </html>
