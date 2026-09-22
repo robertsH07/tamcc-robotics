@@ -34,7 +34,7 @@ function submitAttendance() {
         time: new Date().toLocaleString()
     };
 
-    fetch("https://script.google.com/macros/s/AKfycbxzSx5Ky2fuwyHHKxcfA7dJx-5yeGC0wP4VAJh_4RpOjE9vIWsCN3heHk7oPGQXAUd3qw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbxy27i4A6cIgEjYosiePNd1lH8U_IRVVymmwq2YUKAkcaPYrwl_F6ExpNWP4GmlZmAv/exec", {
         method: "POST",
         mode: "no-cors",
         body: JSON.stringify(data)
