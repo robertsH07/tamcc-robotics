@@ -21,7 +21,7 @@ function createMeeting() {
 
     qrContainer.innerHTML = "";
 
-    const qrURL = `https://YOUR-USERNAME.github.io/TAMCC-Robotics/attendance-page.html?meeting=${meetingId}`;
+    const qrURL = `https://robertsH07.github.io/TAMCC-Robotics/attendance-page.html?meeting=${meetingId}`;
 
     new QRCode(qrContainer, attendanceURL);
 
