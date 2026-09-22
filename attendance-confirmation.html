@@ -32,11 +32,18 @@
     const name = parameters.get("name");
 
     document.getElementById("thankYouMessage").textContent =
-        "Thank you for submitting your attendance, " + name + "!";
+        "Thank you for submitting your attendance, " + <span id="name"></span> + "!";
 </script>
   
 <button onclick="window.location.href='attendance-page.html'">
     Return
 </button>
+<script>
+const parameters = new URLSearchParams(window.location.search);
+const name = parameters.get("name");
+
+document.getElementById("name").textContent = name;
+</script>
+
 
 </body>
