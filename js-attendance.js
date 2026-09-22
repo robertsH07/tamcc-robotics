@@ -36,16 +36,9 @@ function submitAttendance() {
 
     fetch("https://script.google.com/macros/s/AKfycbxzSx5Ky2fuwyHHKxcfA7dJx-5yeGC0wP4VAJh_4RpOjE9vIWsCN3heHk7oPGQXAUd3qw/exec", {
         method: "POST",
+        mode: "no-cors",
         body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            window.location.href = "attendance-confirmation.html";
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        alert("There was a problem submitting your attendance.");
     });
+
+    window.location.href = "confirmation.html";
 }
