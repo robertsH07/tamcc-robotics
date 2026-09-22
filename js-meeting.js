@@ -6,25 +6,25 @@ function createMeeting() {
         return;
     }
 
-    const meetingID = Date.now();
+   const meetingID = Date.now();
 
-    localStorage.setItem("meetingDate", date);
-    localStorage.setItem("meetingID", meetingID);
-
-    const attendanceURL = "https://robertsH07.github.io/tamcc-robotics/attendance-page.html?meeting=" + meetingID;
+    const attendanceURL =
+        "https://robertsh07.github.io/TAMCC-Robotics/attendance-page.html?meeting=" +
+        meetingID +
+        "&date=" +
+        date;
 
     const qrContainer = document.getElementById("qrcode");
 
     qrContainer.innerHTML = "";
 
-    new QRCode(qrContainer, attendanceURL);
+    new QRCode(qrContainer, {
+        text: attendanceURL,
+        width: 200,
+        height: 200
+    });
 
-    console.log("Meeting ID:", meetingID);
-    console.log("Meeting Date:", date);
-    console.log("Attendance URL:", attendanceURL);
-    
-    const parameters = new URLSearchParams(window.location.search);
-const meetingID = parameters.get("meeting");
-
+    localStorage.setItem("meetingDate", date);
+    localStorage.setItem("meetingID", meetingID);
 document.getElementById("meetingID").textContent = meetingID;
 }
