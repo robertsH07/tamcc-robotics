@@ -32,3 +32,33 @@ function submitAttendance() {
         encodeURIComponent(meetingID || "");
 }
 // apps script i guess //
+
+function submitAttendance() {
+    const name = document.getElementById("name").value;
+    const meetingDate = document.getElementById("meetingDate").value;
+
+    if (name === "") {
+        alert("Please enter your name.");
+        return;
+    }
+
+    fetch("https://script.google.com/macros/s/AKfycbxmV6r_Iv_35hIGo95whOCZI-IXR0mcyYDGUomXTFMdMGtL9rUkMTUg2g_CIk6aERgpmg/exec", {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            meetingDate: meetingDate
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href =
+                "attendance-confirmation.html?name=" +
+                encodeURIComponent(name);
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("There was a problem submitting attendance.");
+    });
+}
