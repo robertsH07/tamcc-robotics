@@ -22,18 +22,24 @@
 
 <h2> Club Attendance </h2>
 
-<h4><span id="meetingID"></span></h4>
+<h4 id="meetingID"></h4>
 
 <h2>Attendance Recorded.</h2>
  
 <h3 id="thankYouMessage"></h3> 
       
 <script>
+<script>
 const parameters = new URLSearchParams(window.location.search);
+
 const name = parameters.get("name");
+const meetingID = parameters.get("meeting");
 
 document.getElementById("thankYouMessage").textContent =
     "Thank you for submitting your attendance, " + name + "!";
+
+document.getElementById("meetingID").textContent =
+    "Meeting ID: " + meetingID;
 </script>
   
 <button onclick="window.location.href='attendance-page.html'">
