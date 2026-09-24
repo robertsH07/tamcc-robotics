@@ -17,6 +17,17 @@ if (meetingDate) {
     document.getElementById("meetingID").textContent = "Meeting: No date";
 }
 
-console.log(meetingID);
-console.log("Meeting ID:", meetingID);
-console.log("Meeting Date:", meetingDate);
+function submitAttendance() {
+    const name = document.getElementById("name").value.trim();
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    window.location.href =
+        "attendance-confirmation.html?name=" +
+        encodeURIComponent(name) +
+        "&meeting=" +
+        encodeURIComponent(meetingID || "");
+}
