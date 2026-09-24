@@ -30,7 +30,27 @@
 <h4><span id="meetingID"></span></h4>
 <p>Please enter your name to submit attendance:</p>
 
-<input type="text" id="name" placeholder="Enter your name">
+<form action="https://formspree.io/f/xdekzrnl" method="POST">
+
+    <label for="name">Name</label>
+
+    <input
+        type="text"
+        id="name"
+        name="name"
+        required
+    >
+
+    <input
+        type="hidden"
+        id="meetingDate"
+        name="meetingDate"
+    >
+
+    <button type="submit">Submit Attendance</button>
+
+</form>
+
 <br>
 <br>
 <button type="button" onclick="submitAttendance()">Submit Attendance</button>
