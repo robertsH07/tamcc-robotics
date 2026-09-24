@@ -33,32 +33,45 @@ function submitAttendance() {
 }
 // apps script i guess //
 
-function submitAttendance() {
+const form = document.getElementById("attendanceForm");
+
+form.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
     const name = document.getElementById("name").value;
-    const meetingDate = document.getElementById("meetingDate").value;
 
-    if (name === "") {
-        alert("Please enter your name.");
-        return;
-    }
+    try {
 
-    fetch("https://script.google.com/macros/s/AKfycbxmV6r_Iv_35hIGo95whOCZI-IXR0mcyYDGUomXTFMdMGtL9rUkMTUg2g_CIk6aERgpmg/exec", {
-        method: "POST",
-        body: JSON.stringify({
-            name: name,
-            meetingDate: meetingDate
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+        const response = await fetch("https://formspree.io/f/xdekzrnl", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                meetingDate: meetingDate
+            })
+        });
+
+        if (response.ok) {
+
             window.location.href =
                 "attendance-confirmation.html?name=" +
                 encodeURIComponent(name);
+
+        } else {
+
+            alert("There was a problem submitting attendance.");
+
         }
-    })
-    .catch(error => {
+
+    } catch (error) {
+
         console.error(error);
         alert("There was a problem submitting attendance.");
-    });
-}
+
+    }
+
+});
