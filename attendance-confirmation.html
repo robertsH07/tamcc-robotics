@@ -28,21 +28,17 @@
  
 <h3 id="thankYouMessage"></h3> 
 <script>
-    const parameters = new URLSearchParams(window.location.search);
-    const name = parameters.get("name");
+const parameters = new URLSearchParams(window.location.search);
+const name = parameters.get("name");
 
-    document.getElementById("thankYouMessage").textContent =
-        "Thank you for submitting your attendance, " + <span id="name"></span> + "!";
+document.getElementById("thankYouMessage").textContent =
+    "Thank you for submitting your attendance, " + name + "!";
 </script>
   
 <button onclick="window.location.href='attendance-page.html'">
     Return
 </button>
-<script>
-const parameters = new URLSearchParams(window.location.search);
-const name = parameters.get("name");
 
-document.getElementById("name").textContent = name;
 </script>
 
 
