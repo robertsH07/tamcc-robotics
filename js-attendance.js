@@ -31,3 +31,4 @@ function submitAttendance() {
         "&meeting=" +
         encodeURIComponent(meetingID || "");
 }
+// apps script i guess //
