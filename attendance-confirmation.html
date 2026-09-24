@@ -1,52 +1,68 @@
 <html>
+
+<html>
+
 <head>
-    <title>Attendance Confirmation</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Attendance Confirmation</title>
+
+<link rel="stylesheet" href="style.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
+
 <body>
 
-<script src="js-script.js"></script>
-<script src="js-attendance.js"></script>
+<script src="script.js"></script>
 
-  <div class="menu-container">
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+<div class="menu-container">
 
-    <div id="menu" class="menu">
-        <a > 
-        </a>
-        <a href="attendance-admin.html">Admin</a>
-    </div>
+<button class="hamburger" onclick="toggleMenu()">☰</button>
 
-<img src="images/tamccroboticslogo.png.png" alt="TAMCC Robotics Club Logo" width="150">
-<h1> T.A.M.C.C. ROBOTICS </h1>
+<div id="menu" class="menu">
 
-<h2> Club Attendance </h2>
+<a href="attendance-admin.html">Admin</a>
+
+</div>
+
+</div>
+
+<img src="images/tamccroboticslogo.png.png"
+alt="TAMCC Robotics Club Logo"
+width="150">
+
+<h1>T.A.M.C.C. ROBOTICS</h1>
+
+<h2>Club Attendance</h2>
+
+<h4 id="meetingDate"></h4>
+
+<h2>Attendance Recorded.</h2>
+
+<h3 id="thankYouMessage"></h3>
 
 <h4 id="meetingID"></h4>
 
-<h2>Attendance Recorded.</h2>
- 
-<h3 id="thankYouMessage"></h3> 
-      
+<button onclick="window.location.href='attendance-page.html'">
+Return
+</button>
+
 <script>
+
 const parameters = new URLSearchParams(window.location.search);
 
 const name = parameters.get("name");
 const meetingID = parameters.get("meeting");
 
 document.getElementById("thankYouMessage").textContent =
-    "Thank you for submitting your attendance, " + name + "!";
+    "Thank you for submitting your attendance, " + (name || "student") + "!";
 
 document.getElementById("meetingID").textContent =
-    "Meeting ID: " + meetingID;
-</script>
-  
-<button onclick="window.location.href='attendance-page.html'">
-    Return
-</button>
+    "Meeting ID: " + (meetingID || "Not available");
 
 </script>
-
 
 </body>
+
+</html>
