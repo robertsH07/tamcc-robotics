@@ -12,26 +12,12 @@ if (meetingDate) {
         year: "numeric"
     });
 
-    document.getElementById("meetingID").textContent = "Meeting: " + formattedDate;
+    document.getElementById("meetingID").textContent =
+        "Meeting: " + formattedDate;
 } else {
-    document.getElementById("meetingID").textContent = "Meeting: No date";
+    document.getElementById("meetingID").textContent =
+        "Meeting: No date";
 }
-
-function submitAttendance() {
-    const name = document.getElementById("name").value.trim();
-
-    if (!name) {
-        alert("Please enter your name.");
-        return;
-    }
-
-    window.location.href =
-        "attendance-confirmation.html?name=" +
-        encodeURIComponent(name) +
-        "&meeting=" +
-        encodeURIComponent(meetingID || "");
-}
-// apps script i guess //
 
 const form = document.getElementById("attendanceForm");
 
@@ -39,27 +25,40 @@ form.addEventListener("submit", async function(event) {
 
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
 
     try {
 
-        const response = await fetch("https://formspree.io/f/xdekzrnl", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                meetingDate: meetingDate
-            })
-        });
+        const response = await fetch(
+            "https://formspree.io/f/xdekzrnl",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    meetingID: meetingID,
+                    meetingDate: meetingDate
+                })
+            }
+        );
 
         if (response.ok) {
 
             window.location.href =
                 "attendance-confirmation.html?name=" +
-                encodeURIComponent(name);
+                encodeURIComponent(name) +
+                "&meeting=" +
+                encodeURIComponent(meetingID || "") +
+                "&date=" +
+                encodeURIComponent(meetingDate || "");
 
         } else {
 
@@ -70,6 +69,7 @@ form.addEventListener("submit", async function(event) {
     } catch (error) {
 
         console.error(error);
+
         alert("There was a problem submitting attendance.");
 
     }
