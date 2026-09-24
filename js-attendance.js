@@ -32,21 +32,22 @@ form.addEventListener("submit", async function(event) {
         return;
     }
 
+    const formData = new FormData();
+
+    formData.append("name", name);
+    formData.append("meetingID", meetingID || "");
+    formData.append("meetingDate", meetingDate || "");
+
     try {
 
         const response = await fetch(
             "https://formspree.io/f/xdekzrnl",
             {
                 method: "POST",
+                body: formData,
                 headers: {
-                    "Content-Type": "application/json",
                     "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    name: name,
-                    meetingID: meetingID,
-                    meetingDate: meetingDate
-                })
+                }
             }
         );
 
@@ -61,6 +62,10 @@ form.addEventListener("submit", async function(event) {
                 encodeURIComponent(meetingDate || "");
 
         } else {
+
+            const data = await response.json();
+
+            console.error(data);
 
             alert("There was a problem submitting attendance.");
 
